@@ -20,16 +20,9 @@ class ProtectionController extends Controller
         $altitude = $request->altitude;
         // vérifier si la liste contient une virgule
 
-        if (str_contains( $altitudeList, ',')) {
-            $listOfAltitudes = $this->protectionService->transformToArray(",", $altitudeList);
-        }
-        else if(str_contains($altitudeList, " ")){
-            $listOfAltitudes = $this->protectionService->transformToArray(" ", $altitudeList);
-        }else if(str_contains($altitudeList, "-")){
-            $listOfAltitudes = $this->protectionService->transformToArray("-", $altitudeList);
-        }
-        else {
+        $listOfAltitudes = $this->protectionService->getAltitudeList($altitudeList);
 
+        if($listOfAltitudes === null) {
             return redirect()->back()->with('error', 'les altitudes doivent être séparées par un espace ou une virgule ou un
             trait d\'union (-)
             ');

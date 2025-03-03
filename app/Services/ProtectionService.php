@@ -26,6 +26,20 @@ class ProtectionService
         return explode($separator, $array);
     }
 
+    public function getAltitudeList($altitudeList): array|null
+    {
+        // Liste des séparateurs possibles
+        $separators = [',', ' ', '-'];
+
+        foreach ($separators as $separator) {
+            if (str_contains($altitudeList, $separator)) {
+                return $this->transformToArray($separator, $altitudeList);
+            }
+        }
+
+        return null;
+    }
+
     public function elementsIsEqual(array $elements, int $number): bool
     {
 
