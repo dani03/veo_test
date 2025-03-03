@@ -39,12 +39,12 @@ class CalculateProtectedSurface extends Command
         $altitudes = explode(' ', trim($altitudesList));
 
         // on compte les nombres d'éléments si ça correspond bien
-        if (count($altitudes) !== (int)$number) {
-            $this->error("le nombre d'éléments dans la liste est inférieur/supérieur à $number");
-            exit;
-        }
+       if (! (new ProtectionService())->elementsIsEqual($altitudes, (int)$number)) {
+           $this->error("le nombre d'éléments dans la liste est inférieur/supérieur à $number");
+           exit;
+       }
 
-        // vérification si une des valeurs n'est pas inferieure à 0 ou supérieure au max
+        // vérification si une des valeurs n'est pas inférieure à 0 ou supérieure au max
         foreach ($altitudes as $oneAltitude) {
 
             if(!is_numeric($oneAltitude) || $oneAltitude < 0 || $oneAltitude > $max_num){

@@ -21,15 +21,23 @@
     </head>
     <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
     <div class="w-full">
-        @if ($errors->any())
+        @if ($errors->any() )
             <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
+                        <li>{{ $error }} </li>
                     @endforeach
                 </ul>
             </div>
         @endif
+
+            @if ( session('error') )
+                <div class="">
+                    <ul class="text-red-700 text-lg m-4">
+                        {{ session('error') }}
+                    </ul>
+                </div>
+            @endif
         <form method="post" action="{{ route('protected.altitude') }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             @csrf
             <div class="mb-4">
@@ -49,6 +57,12 @@
                     Rechercher
                 </button>
             </div>
+            @if( session('success') )
+            <div class="flex items-center justify-between text-green-700 text-lg m-4">
+                {{ session('success') }}
+            </div>
+            @endif
+
         </form>
 
     </div>
