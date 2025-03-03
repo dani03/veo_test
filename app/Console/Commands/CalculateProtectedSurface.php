@@ -28,18 +28,21 @@ class CalculateProtectedSurface extends Command
     {
         $max_num = 100000;
         // demande au user d'entrer une valeur
-        $number = $this->ask('Enter the number of altitudes');
+        $number = $this->ask("Entrer le nombre d'altitude souhaitée");
         // verification de la validité du nombre
         while (!is_numeric($number) || $number < 1 || $number > $max_num) {
             $this->error("ce nombre est invalide. ou est supérieur à $max_num");
-            $number = $this->ask('Enter the number of altitudes');
+            $number = $this->ask("Entrer le nombre d'altitude souhaitée");
         }
         // on demande ensuite une liste d'altitude
-        $altitudesList = $this->ask("entrez une liste d'altitudes séparer par des espaces ");
-        $altitudes = explode(' ', trim($altitudesList));
-
+        $altitudesList = $this->ask("entrez une liste d'altitudes séparer par des espaces ou virgules ");
+        $altitudes = (new ProtectionService())->getAltitudeList($altitudesList);
+        if(is_null($altitudes)) {
+            $this->error("aucun séparateur de valeur valide..");
+            exit;
+        }
         // on compte les nombres d'éléments si ça correspond bien
-       if (! (new ProtectionService())->elementsIsEqual($altitudes, (int)$number)) {
+       if (!(new ProtectionService())->elementsIsEqual($altitudes, (int)$number)) {
            $this->error("le nombre d'éléments dans la liste est inférieur/supérieur à $number");
            exit;
        }
