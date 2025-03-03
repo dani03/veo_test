@@ -25,4 +25,23 @@ class ProtectionService
     {
         return explode($separator, $array);
     }
+
+    public function elementsIsEqual(array $elements, int $number): bool
+    {
+
+       return count($elements) === $number;
+    }
+
+    public function checkIfElementIsValid(array $elements, int $max):bool
+    {
+        foreach ($elements as $element) {
+
+            if(!is_numeric($element) || $element < 0 || $element > $max){
+               return false;
+            }
+
+        }
+
+        return true;
+    }
 }
