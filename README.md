@@ -1,3 +1,37 @@
+
+
+## Description
+Ce projet Laravel permet de gérer la validation et le traitement d'une liste d'altitudes en vérifiant la conformité des valeurs et en calculant les surfaces protégées. Le projet repose sur une architecture propre en séparant la logique métier dans un service (`ProtectionService`) et en gardant le contrôleur (`ProtectionController`) léger.
+
+## Choix de Conception
+
+### 1. **Utilisation d'un Service (ProtectionService)**
+Le choix d'externaliser la logique métier dans un service permet de garder le contrôleur concis et facile à comprendre, faciliter la réutilisation de la logique dans d'autres parties de l'application.
+
+### 2. **Injection de dépendances**
+L'injection de `ProtectionService` dans `ProtectionController` asure
+- Une meilleure séparation des responsabilités.
+- Une flexibilité lorsqu'il est question de modification du service.
+
+### 3. **Utilisation de Blade pour le Frontend**
+Blade simplifie la gestion des erreurs et des messages de validation tout en gardant le code lisible 
+possibilité d'utiliser vue Js mais j'ai préferé garder au plus simple et ne pas en faire trop sachant que ce n'était pas demandé.
+
+### 4. **Création d'une commande Artisan**
+Une commande personnalisée `calculate:surface` permet d'exécuter la logique métier en ligne de commande, offrant une alternative à l'interface web même s'il avait été demandé l'un ou l'autre j'ai opté pour faire les 2 et afin de facilité le test en ligne j'ai ajouté le projet en ligne avec laravel cloud nouveauté de laravel sur l'url :
+https://test-veolia-main-icqjyh.laravel.cloud/.
+
+### 5. **Automatisation avec un Makefile**
+Le `Makefile` facilite l'installation et l'exécution du projet en automatisant :
+- L'installation des dépendances (`composer install`, `npm install`).
+- La configuration de l'environnement (`.env`, `database.sqlite`).
+- La migration de la base de données (`php artisan migrate`).
+- Le lancement du serveur (`php artisan serve`).
+
+
+
+
+
 # 📌 Guide d'installation et d'utilisation du projet
 
 ## 🚀 Installation du projet
