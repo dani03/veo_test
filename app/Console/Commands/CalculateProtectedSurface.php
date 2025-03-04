@@ -61,6 +61,6 @@ class CalculateProtectedSurface extends Command
 
 
 
-        $this->info("il y a $val qui sont protégées. ");
+        $this->info("il y a $val surface(s) qui sont protégées. ");
     }
 }

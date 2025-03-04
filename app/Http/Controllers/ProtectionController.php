@@ -23,19 +23,19 @@ class ProtectionController extends Controller
         $listOfAltitudes = $this->protectionService->getAltitudeList($altitudeList);
 
         if($listOfAltitudes === null) {
-            return redirect()->back()->with('error', 'les altitudes doivent être séparées par un espace ou une virgule ou un
+            return redirect()->back()->withInput()->with('error', 'les altitudes doivent être séparées par un espace ou une virgule ou un
             trait d\'union (-)
             ');
         }
         // verification si les elements du tableau ont les bonnes valeurs
         if(!$this->protectionService->checkIfElementIsValid($listOfAltitudes, 100000)) {
-            return redirect()->back()->with('error', "un ou plusieurs éléments sont invalides dans la liste");
+            return redirect()->back()->withInput()->with('error', "un ou plusieurs éléments sont invalides dans la liste");
         }
 
         //si le tableau est donc valide on vérifie si les elements du tableau correspondent
         if(! $this->protectionService->elementsIsEqual($listOfAltitudes, (int) $altitude)) {
 
-            return redirect()->back()->with('error', "le nombre d'éléments ne correspond pas.");
+            return redirect()->back()->withInput()->with('error', "le nombre d'éléments ne correspond pas.");
         }
 
         $protectedArea = $this->protectionService->getProtectedArea($listOfAltitudes);
