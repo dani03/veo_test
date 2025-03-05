@@ -13,8 +13,8 @@ L'injection de `ProtectionService` dans `ProtectionController` asure
 - Une meilleure séparation des responsabilités.
 - Une flexibilité lorsqu'il est question de modification du service.
 
-### 3. **Utilisation de Blade pour le Frontend**
-Blade simplifie la gestion des erreurs et des messages de validation tout en gardant le code lisible 
+### 3. **Utilisation de Vue et inertia pour le Frontend**
+vue simplifie la gestion des erreurs et des messages de validation tout en gardant le code lisible 
 possibilité d'utiliser vue Js mais j'ai préferé garder au plus simple et ne pas en faire trop sachant que ce n'était pas demandé.
 
 ### 4. **Création d'une commande Artisan**
