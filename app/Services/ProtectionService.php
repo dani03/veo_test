@@ -4,19 +4,17 @@ namespace App\Services;
 
 class ProtectionService
 {
-
     /**
      * calcule le nombre d'altitudes protégée
-     * @param array $altitudesList
-     * @return int
      */
-    public function getProtectedArea( array $altitudesList) : int
+    public function getProtectedArea(array $altitudesList): int
     {
-        $maxAltitude = 0 ;
+        $maxAltitude = 0;
         $surfaceProtegee = 0;
         foreach ($altitudesList as $hauteur) {
-           $hauteur >= $maxAltitude ?  $maxAltitude = $hauteur : $surfaceProtegee++;
+            $hauteur >= $maxAltitude ? $maxAltitude = $hauteur : $surfaceProtegee++;
         }
+
         return $surfaceProtegee;
 
     }
@@ -26,7 +24,7 @@ class ProtectionService
         return explode($separator, $array);
     }
 
-    public function getAltitudeList($altitudeList): array|null
+    public function getAltitudeList($altitudeList): ?array
     {
         // Liste des séparateurs possibles
         $separators = [',', ' ', '-'];
@@ -43,15 +41,15 @@ class ProtectionService
     public function elementsIsEqual(array $elements, int $number): bool
     {
 
-       return count($elements) === $number;
+        return count($elements) === $number;
     }
 
-    public function checkIfElementIsValid(array $elements, int $max):bool
+    public function checkIfElementIsValid(array $elements, int $max): bool
     {
         foreach ($elements as $element) {
 
-            if(!is_numeric($element) || $element < 0 || $element > $max){
-               return false;
+            if (! is_numeric($element) || $element < 0 || $element > $max) {
+                return false;
             }
 
         }

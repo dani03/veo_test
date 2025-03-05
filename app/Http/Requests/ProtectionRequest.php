@@ -23,7 +23,7 @@ class ProtectionRequest extends FormRequest
     {
         return [
             'altitude' => 'required|min:1|max:100000|integer',
-            'altitudes.*' => 'required|string'
+            'altitudes.*' => 'required|string',
         ];
     }
 }
